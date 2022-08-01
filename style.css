@@ -21,10 +21,12 @@
 }
 
 #display {
-    display: grid;
+    display: flex;
     border: solid 1px;
     height: 100px;
     width: 400px;
+    justify-content: center;
+    align-items: center;
 }
 
 #one, #two, #three, #four, #five, #six, #seven,
