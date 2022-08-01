@@ -1,0 +1,52 @@
+#calcContainer {
+    display: grid;
+    border: solid 1px;
+    grid-template-rows: repeat(4, 1fr);
+    height: 600px;
+    width: 500px;
+}
+
+#numContainer {
+    display: grid;
+    border: solid 1px;
+    grid-template-columns: repeat(4, 1fr);
+    
+}
+
+#opContainer {
+    display: grid;
+    border: solid 1px;
+    grid-template-columns: repeat(4, 1fr);
+    width: 400px;
+}
+
+#display {
+    display: grid;
+    border: solid 1px;
+    height: 100px;
+    width: 400px;
+}
+
+#one, #two, #three, #four, #five, #six, #seven,
+#eight, #nine {
+    display: grid;
+    border: solid 1px;
+}
+
+#zero {
+    display: grid;
+    border: solid 1px;
+}
+
+#add, #subtract, #multiply, #divide {
+    display: grid;
+    border: solid 1px;
+}
+
+#equals {
+    border: solid 1px;
+}
+
+#clear {
+    border: solid 1px;
+}
