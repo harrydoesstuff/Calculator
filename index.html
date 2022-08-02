@@ -9,12 +9,16 @@
   <body>
    
     <div id="calcContainer">
+        <div id="currentOperand"></div>
         <div id="display"></div>
+            <div class="previous-operand" data-previous-operand></div>
+            <div class="current-operand" data-current-operand></div>
         <div id="opContainer">
             <button id="add" value="+" data-operation>+</button>
             <button id="subtract" value="-" data-operation>-</button>
             <button id="multiply" value="x" data-operation>x</button>
             <button id="divide" value="/" data-operation>/</button>
+            <button id="DEL" data-delete>DEL</button>
             <button id="clear" value="c" data-clear>C</button>
             <button id="equals" value="=" data-equals>=</button>
         </div>
@@ -29,6 +33,7 @@
             <button id="eight" value="8" data-number>8</button>
             <button id="nine" value="9" data-number>9</button>
             <button id="zero" value="0" data-number>0</button>
+            <button id="point" value="." data-number>.</button>
         </div>
         
     </div>
