@@ -20,7 +20,16 @@
     width: 400px;
 }
 
-#display {
+.current-operand {
+    display: flex;
+    border: solid 1px;
+    height: 100px;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+}
+
+.previous-operand {
     display: flex;
     border: solid 1px;
     height: 100px;
