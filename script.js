@@ -33,7 +33,6 @@ numberInputs = [];
 
 const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll("[data-operation]");
-const equalsButton = document.querySelectorAll("[data-equals]");
 const clearButton = document.querySelectorAll("[data-clear]");
 // let num1;
 // let num2;
@@ -51,30 +50,50 @@ const clearButton = document.querySelectorAll("[data-clear]");
 
 //going to do a prompt based calculator down here to get the operations functioning properly. Then I'll move back to getting the buttons to work. 
 
-let a = prompt("First number:");
-let b = prompt("Second number:");
-let num1 = parseFloat(a);
-let num2 = parseFloat(b);
 
-let operator = prompt("Operator:");
+let num1;
+let num2;
 
-switch (operator) {
-    case "+":
-        console.log(add(num1, num2));
-    break;
+let operator;
+let result;
 
-    case "-":
-        console.log(subtract(num1, num2));
-    break;
+//ok now lets try this using the buttons
 
-    case "*":
-        console.log(multiply(num1, num2));
-    break;
+const equalsButton = document.getElementById("equals");
+equalsButton.addEventListener("click", e => {
+    switch (operator) {
+        case "+":
+            console.log(add(num1, num2));
+        break;
 
-    case "/":
-        console.log(divide(num1, num2));
-    break;
-}
+        case "-":
+            console.log(subtract(num1, num2));
+        break;
+
+        case "x":
+            console.log(multiply(num1, num2));
+        break;
+
+        case "/":
+            console.log(divide(num1, num2));
+        break;
+    }
+});
+
+operationButtons.forEach(operationButtons => {
+    operationButtons.addEventListener("click", e => {
+        operator = e.target.value;
+        console.log(operator);
+    })
+})
+
+numberButtons.forEach(numberButtons => {
+    numberButtons.addEventListener("click", e => {
+        num1 = parseFloat(e.target.value);
+        num2 = parseFloat(e.target.value);
+        console.log(num1, num2);
+    })
+})
 
 function add() {
     let addResult = num1 + num2;
