@@ -15,8 +15,7 @@
 // const clear = document.getElementById("clear");
 // const equals = document.getElementById("equals");
 
-const display = document.getElementById("display");
-numberInputs = [];
+// const display = document.getElementById("display");
 
 
 // const buttons = document.querySelectorAll("button");
@@ -31,9 +30,12 @@ numberInputs = [];
 
 // going to try this using data instead of individual IDs
 
-const numberButtons = document.querySelectorAll('[data-number]');
-const operationButtons = document.querySelectorAll("[data-operation]");
-const clearButton = document.querySelectorAll("[data-clear]");
+// const numberButtons = document.querySelectorAll('[data-number]');
+// const operationButtons = document.querySelectorAll("[data-operation]");
+// const clearButton = document.getElementById("clear");
+// const currentOperand = document.getElementById("currentOperand");
+// const equalsButton = document.getElementById("equals");
+
 // let num1;
 // let num2;
 // let operator;
@@ -51,66 +53,264 @@ const clearButton = document.querySelectorAll("[data-clear]");
 //going to do a prompt based calculator down here to get the operations functioning properly. Then I'll move back to getting the buttons to work. 
 
 
-let num1;
-let num2;
+// let num1;
+// let num2;
 
-let operator;
-let result;
+// let operator;
+// let result;
 
 //ok now lets try this using the buttons
 
-const equalsButton = document.getElementById("equals");
-equalsButton.addEventListener("click", e => {
-    switch (operator) {
-        case "+":
-            console.log(add(num1, num2));
-        break;
+// equalsButton.addEventListener("click", e => {
 
-        case "-":
-            console.log(subtract(num1, num2));
-        break;
+// function calculate() {
+//     switch (operator) {
+//         case "+":
+//             display.innerText = add(num1, num2);
+//         break;
 
-        case "x":
-            console.log(multiply(num1, num2));
-        break;
+//         case "-":
+//             display.innerText = subtract(num1, num2);
+//         break;
 
-        case "/":
-            console.log(divide(num1, num2));
-        break;
+//         case "x":
+//             display.innerText = multiply(num1, num2);
+//         break;
+
+//         case "/":
+//             display.innerText = divide(num1, num2);
+//         break;
+//     }
+// };
+
+// operationButtons.forEach(operationButtons => {
+//     operationButtons.addEventListener("click", e => {
+//         operator = e.target.value;
+//         console.log(operator);
+//     })
+// })
+
+// numberButtons.forEach(numberButtons => {
+//     numberButtons.addEventListener("click", e => {
+//         num1 = parseFloat(e.target.value);
+//         num2 = parseFloat(e.target.value);
+//         console.log(num1, num2);
+//     })
+// })
+
+// function add() {
+//     let int1 = parseFloat(num1);
+//     let int2 = parseFloat(num2);
+//      calcResult = int1 + int2;
+//     return calcResult;
+// }
+
+// function subtract() {
+//     let int1 = parseFloat(num1);
+//     let int2 = parseFloat(num2);
+//     calcResult = int1 - int2;
+//     return calcResult;
+// }
+
+// function multiply() {
+//     let int1 = parseFloat(num1);
+//     let int2 = parseFloat(num2);
+//     calcResult = int1 * int2;
+//     return calcResult;
+// }
+
+// function divide() {
+//     let int1 = parseFloat(num1);
+//     let int2 = parseFloat(num2);
+//     calcResult = int1 / int2;
+//     return calcResult;
+// }
+
+//I think I'm going to need arrays here so I'm going to pseudo it out
+// 
+// 
+// take first number input and store in temp array
+// store that number in an array when an operator or equals is pushed
+// clear the temp array
+// take second number input and store in temp array
+// if equals is pressed
+///////store second number in new array and clear temp array
+///////run operation on two numbers
+///////display result and store it in the temp array
+// if operator is pressed
+///////store second number in new array and clear temp array
+///////allow input of a third number to the temp array
+
+
+
+//take first number input and store in a temp array
+
+// currentInput = [];
+// let calcResult;
+
+// numberButtons.forEach(numberButtons => {
+//     numberButtons.addEventListener("click", e => {
+//         currentInput.push(e.target.value);
+//         display.innerText = currentInput.join("");
+//     })
+// })
+
+//store that number in an array when an operator or equals is pushed
+
+// operationButtons.forEach(operationButtons => {
+//     operationButtons.addEventListener("click", e => {
+//         operator = e.target.value;
+//         display.innerText = operator;
+//         num1 = currentInput.join("");
+//         currentInput = [];
+//     })
+// })
+
+
+//equals is pressed, run operation and clear temp array
+
+// equalsButton.addEventListener("click", e => {
+//     num2 = currentInput.join("");
+//     currentInput = [];
+//     calculate();
+// })
+
+//clear button
+
+// clearButton.addEventListener("click", e => {
+//     currentInput = [];
+//     num1 = 0;
+//     num2 = 0;
+//     display.innerText = "";
+// })
+
+
+
+
+// const numb1 = new Number(2)
+// console.log(numb1)
+
+
+// for (let i = 1; i <= 5; i++) {
+//     this["numb" + i] = i;
+// }
+// console.log(numb5)
+
+//Had a total rethink in the logic of how this should work. I've watched some videos on classes and constructor functions and I 
+//think that's the way to go. 
+
+//I'll keep all of my previous code in here though to see where I've come from. 
+
+const numbers = document.querySelectorAll("[data-number]");
+const operator = document.querySelectorAll("[data-operation]");
+const equals = document.querySelector("[data-equals]");
+const clear = document.querySelector("[data-clear]");
+const del = document.querySelector("[data-delete]");
+const previousOperandText = document.querySelector("[data-previous-operand]");
+const currentOperandText = document.querySelector("[data-current-operand]");
+
+
+class Calc {
+    constructor (previousOperandText, currentOperandText) {
+        this.previousOperandText = previousOperandText;
+        this.currentOperandText = currentOperandText;
+        this.clear();
     }
-});
 
-operationButtons.forEach(operationButtons => {
-    operationButtons.addEventListener("click", e => {
-        operator = e.target.value;
-        console.log(operator);
+    clear() {
+        this.currentOperand = "";
+        this.previousOperand = "";
+        this.operator = undefined;
+    }
+
+    del() {
+        this.currentOperand = this.currentOperand.toString().slice(0, -1) //slices the last part of the string 
+    }
+
+    appendNumber(number) {
+        if (number === "." && this.currentOperand.includes(".")) return;  //makes sure point can only be added once
+        this.currentOperand = this.currentOperand.toString() + number.toString(); //appends all clicked numbers using a string instead of adding together as ints
+    }
+
+    chooseOperator(operator) {
+        if (this.currentOperand === "") return; //checks if operator is empty
+        if (this.previousOperand != "") { //checks if an operand has been hit previously, and if so performs the calculation 
+            this.compute()
+        }
+
+        this.operator = operator;
+        this.previousOperand = this.currentOperand;
+        this.currentOperand = "";
+        //this pushes the previous operand and operator to the previous operand display and clears the current operand
+    }
+
+    compute() {
+        let computation; 
+        const prev = parseFloat(this.previousOperand);
+        const current = parseFloat(this.currentOperand);
+        if (isNaN(prev) || isNaN(current)) return; //doesn't allow to run if no number entered
+
+        switch (this.operator) {
+            case "+":
+                 computation = prev + current;
+            break;
+
+            case "-":
+                computation = prev - current;
+            break;
+
+            case "x":
+                computation = prev * current;
+            break;
+
+            case "/":
+                computation = prev / current;
+            break;
+
+           default: 
+            return;
+    } //this is all the same as the switch I'd previously made
+    this.currentOperand = computation; //brings the calculated amount to the current operand (this is what i struggled a lot with previously)
+    this.operator = undefined;
+    this.previousOperand = "";
+    };
+
+    updateDisplay() {
+        this.currentOperandText.innerText = this.currentOperand;
+        if (this.operator != null) {
+            this.previousOperandText.innerText = 
+            `${this.previousOperand} ${this.operator}`;
+        }    
+    }
+}
+
+const calculator = new Calc(previousOperandText, currentOperandText);
+
+numbers.forEach(button => {
+    button.addEventListener("click", () => {
+        calculator.appendNumber(button.innerText);
+        calculator.updateDisplay();
     })
 })
 
-numberButtons.forEach(numberButtons => {
-    numberButtons.addEventListener("click", e => {
-        num1 = parseFloat(e.target.value);
-        num2 = parseFloat(e.target.value);
-        console.log(num1, num2);
+operator.forEach(button => {
+    button.addEventListener("click", () => {
+        calculator.chooseOperator(button.innerText);
+        calculator.updateDisplay();
     })
 })
 
-function add() {
-    let addResult = num1 + num2;
-    return addResult;
-}
+equals.addEventListener("click", button => {
+    calculator.compute();
+    calculator.updateDisplay();
+})
 
-function subtract(num1, num2) {
-    let subtractResult = num1 - num2;
-    return subtractResult;
-}
+clear.addEventListener("click", button => {
+    calculator.clear();
+    calculator.updateDisplay();
+})
 
-function multiply(num1, num2) {
-    let multiplyResult = num1 * num2;
-    return multiplyResult;
-}
-
-function divide(num1, num2) {
-    let divideResult = num1 / num2;
-    return divideResult;
-}
+del.addEventListener("click", button => {
+    calculator.del();
+    calculator.updateDisplay();
+})
